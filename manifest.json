@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Random Book of Mormon Chapter",
+  "version": "1.0",
+  "description": "Get a random Book of Mormon chapter with a link to churchofjesuschrist.org",
+  "permissions": [],
+  "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+          "16": "randomScripture-16.png",
+          "48": "randomScripture-48.png",
+          "128": "randomScripture-128.png"
+      }
+  },
+  "icons": {
+      "16": "randomScripture-16.png",
+      "48": "randomScripture-48.png",
+      "128": "randomScripture-128.png"
+  }
+}
