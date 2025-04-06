@@ -27,6 +27,9 @@ function getRandomChapter() {
   
   // Display the result
   const resultDiv = document.getElementById('result');
+  resultDiv.style.padding = '5px';
+  resultDiv.style.paddingBottom = '20px';
+  resultDiv.style.border = '2px solid rgba(198, 183, 68, 1)';
   resultDiv.innerHTML = `
       <p>${randomBook.name} ${randomChapter}</p>
       <a href="${url}" target="_blank">Read it here</a>
