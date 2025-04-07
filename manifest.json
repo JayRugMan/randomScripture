@@ -16,5 +16,10 @@
       "16": "randomScripture-16.png",
       "48": "randomScripture-48.png",
       "128": "randomScripture-128.png"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "random-bom-chapter@yourdomain.com"
+    }
   }
 }

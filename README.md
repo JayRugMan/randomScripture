@@ -8,6 +8,11 @@
 2. Enable "Developer mode" (top right).
 3. Click "Load unpacked" and select this folder.
 
+### Load into Firefox
+
+1. Open debugging mode for *This Firefox* [about:debugging#/runtime/this-firefox](about:debugging#/runtime/this-firefox)
+2. Click *Load Temporary Add-on...* and select this folder
+
 ### Test It
 
 A new icon should appear in your toolbar.
