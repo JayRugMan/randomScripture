@@ -20,7 +20,9 @@ A browser extension that generates a random chapter from the Book of Mormon, com
 
 1. Open Firefox’s debugging page: `about:debugging#/runtime/this-firefox`
 2. Click **Load Temporary Add-on...** and select this repository’s folder.
-   - Note: This is a temporary install; it’ll unload when Firefox restarts. For permanent use, consider packaging it (see Mozilla’s docs).
+
+> [!NOTE]
+> This is a temporary install; it’ll unload when Firefox restarts. For permanent use, consider packaging it (see Mozilla’s docs).
 
 ### Testing It
 
