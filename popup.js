@@ -17,23 +17,44 @@ const books = [
   { name: "Moroni", chapters: 10, abbr: "moro" }
 ];
 
+// NEW: Calculate total chapters and create a cumulative chapter count for mapping
+const totalChapters = books.reduce((sum, book) => sum + book.chapters, 0); // 239 chapters
+const chapterRanges = [];
+let cumulativeChapters = 0;
+books.forEach(book => {
+    chapterRanges.push({
+        name: book.name,
+        abbr: book.abbr,
+        start: cumulativeChapters + 1,
+        end: cumulativeChapters + book.chapters
+    });
+    cumulativeChapters += book.chapters;
+});
+
 function getRandomChapter() {
-  // Pick a random book
-  const randomBook = books[Math.floor(Math.random() * books.length)];
-  // Pick a random chapter from that book
-  const randomChapter = Math.floor(Math.random() * randomBook.chapters) + 1;
-  // Construct the URL
-  const url = `https://www.churchofjesuschrist.org/study/scriptures/bofm/${randomBook.abbr}/${randomChapter}?lang=eng`;
-  
-  // Display the result
-  const resultDiv = document.getElementById('result');
-  resultDiv.style.padding = '5px';
-  resultDiv.style.paddingBottom = '20px';
-  resultDiv.style.border = '2px solid rgba(198, 183, 68, 1)';
-  resultDiv.innerHTML = `
-      <p>${randomBook.name} ${randomChapter}</p>
-      <a href="${url}" target="_blank">Read it here</a>
-  `;
+    // NEW: Pick a random chapter number from 1 to 239 (total chapters)
+    const randomChapterIndex = Math.floor(Math.random() * totalChapters) + 1;
+
+    // NEW: Find which book this chapter belongs to by checking cumulative ranges
+    const selectedBook = chapterRanges.find(range => 
+        randomChapterIndex >= range.start && randomChapterIndex <= range.end
+    );
+
+    // NEW: Calculate the chapter number within the selected book
+    const chapterNumber = randomChapterIndex - selectedBook.start + 1;
+
+    // Construct the URL using the selected book's abbreviation and chapter number
+    const url = `https://www.churchofjesuschrist.org/study/scriptures/bofm/${selectedBook.abbr}/${chapterNumber}?lang=eng`;
+    
+    // Display the result with your custom styling
+    const resultDiv = document.getElementById('result');
+    resultDiv.style.padding = '5px';
+    resultDiv.style.paddingBottom = '20px';
+    resultDiv.style.border = '2px solid rgba(198, 183, 68, 1)';
+    resultDiv.innerHTML = `
+        <p>${selectedBook.name} ${chapterNumber}</p>
+        <a href="${url}" target="_blank">Read it here</a>
+    `;
 }
 
 // Add event listener to the button when the DOM is loaded
