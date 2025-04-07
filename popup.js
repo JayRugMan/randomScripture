@@ -17,10 +17,9 @@ const books = [
   { name: "Moroni", chapters: 10, abbr: "moro" }
 ];
 
-// NEW: Calculate total chapters and create a cumulative chapter count for mapping
-const totalChapters = books.reduce((sum, book) => sum + book.chapters, 0); // 239 chapters
+// Calculate total chapters and create a cumulative chapter count for mapping
 const chapterRanges = [];
-let cumulativeChapters = 0;
+let cumulativeChapters = 0; // This will hold the total (239) after the loop
 books.forEach(book => {
     chapterRanges.push({
         name: book.name,
@@ -32,15 +31,15 @@ books.forEach(book => {
 });
 
 function getRandomChapter() {
-    // NEW: Pick a random chapter number from 1 to 239 (total chapters)
-    const randomChapterIndex = Math.floor(Math.random() * totalChapters) + 1;
+    // Use cumulativeChapters with total chapters counted up
+    const randomChapterIndex = Math.floor(Math.random() * cumulativeChapters) + 1;
 
-    // NEW: Find which book this chapter belongs to by checking cumulative ranges
+    // Find which book this chapter belongs to by checking cumulative ranges
     const selectedBook = chapterRanges.find(range => 
         randomChapterIndex >= range.start && randomChapterIndex <= range.end
     );
 
-    // NEW: Calculate the chapter number within the selected book
+    // Calculate the chapter number within the selected book
     const chapterNumber = randomChapterIndex - selectedBook.start + 1;
 
     // Construct the URL using the selected book's abbreviation and chapter number
